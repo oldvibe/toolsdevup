@@ -1,13 +1,3 @@
-/* ========================================
-   TOOLsDEVUP
-   Tool Directory
-======================================== */
-
-
-/* ========================================
-   TOOL DATABASE
-======================================== */
-
 const tools = [
 
     {
@@ -40,7 +30,7 @@ const tools = [
         icon: "✨",
 
         description:
-            "Create polished presentations, documents and visual content with AI.",
+            "Create presentations, documents, websites and visual content with AI.",
 
         free: true,
 
@@ -50,7 +40,7 @@ const tools = [
             "Productivity"
         ],
 
-        url: "https://gamma.app/"
+        url: "tools/ai/gamma.html"
     },
 
 
@@ -72,7 +62,7 @@ const tools = [
             "AI"
         ],
 
-        url: "https://www.descript.com/"
+        url: "tools/ai/descript.html"
     },
 
 
@@ -182,8 +172,7 @@ const tools = [
             "Study"
         ],
 
-        url: "https://www.canva.com/"
-    },
+        url: "tools/ai/canva.html"    },
 
 
     {
@@ -232,10 +221,6 @@ const tools = [
 ];
 
 
-/* ========================================
-   DOM
-======================================== */
-
 const toolsGrid =
     document.getElementById("tools-grid");
 
@@ -249,16 +234,8 @@ const noResults =
     document.getElementById("no-results");
 
 
-/* ========================================
-   STATE
-======================================== */
-
 let currentCategory = "all";
 
-
-/* ========================================
-   RENDER
-======================================== */
 
 function renderTools() {
 
@@ -337,32 +314,23 @@ function renderTools() {
             <div class="tool-card-top">
 
                 <div class="tool-icon">
-
                     ${tool.icon}
-
                 </div>
 
-
                 <span class="tool-category">
-
                     ${tool.category}
-
                 </span>
 
             </div>
 
 
             <h3>
-
                 ${tool.name}
-
             </h3>
 
 
             <p class="tool-description">
-
                 ${tool.description}
-
             </p>
 
 
@@ -405,9 +373,7 @@ function renderTools() {
                     class="tool-link"
                     href="${tool.url}"
                 >
-
                     View tool →
-
                 </a>
 
             </div>
@@ -421,10 +387,6 @@ function renderTools() {
 
 }
 
-
-/* ========================================
-   FILTERS
-======================================== */
 
 filterButtons.forEach((button) => {
 
@@ -460,18 +422,10 @@ filterButtons.forEach((button) => {
 });
 
 
-/* ========================================
-   SEARCH
-======================================== */
-
 searchInput.addEventListener(
     "input",
     renderTools
 );
 
-
-/* ========================================
-   INITIAL RENDER
-======================================== */
 
 renderTools();
