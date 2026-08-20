@@ -357,4 +357,221 @@ footer {
         align-items: flex-start;
     }
 
+    /* DIRECTORY */
+
+.directory {
+    padding: 120px 0;
+}
+
+
+.search-container {
+    max-width: 650px;
+    margin-bottom: 25px;
+}
+
+
+#tool-search {
+    width: 100%;
+
+    padding: 16px 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-size: 1rem;
+
+    outline: none;
+}
+
+
+#tool-search:focus {
+    border-color: var(--accent);
+}
+
+
+#tool-search::placeholder {
+    color: var(--muted);
+}
+
+
+/* FILTERS */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 35px;
+}
+
+
+.filter-button {
+    padding: 10px 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--surface);
+    color: var(--muted);
+
+    cursor: pointer;
+
+    font-size: 0.9rem;
+}
+
+
+.filter-button:hover {
+    color: var(--text);
+}
+
+
+.filter-button.active {
+    background: var(--accent);
+    color: var(--text);
+    border-color: var(--accent);
+}
+
+
+/* TOOL GRID */
+
+.tools-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.tool-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 280px;
+
+    padding: 25px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.tool-card:hover {
+    transform: translateY(-5px);
+
+    background: var(--surface-hover);
+}
+
+
+.tool-category {
+    display: inline-block;
+
+    width: fit-content;
+
+    margin-bottom: 18px;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: var(--background);
+
+    color: var(--accent);
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.tool-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 1.4rem;
+}
+
+
+.tool-card p {
+    color: var(--muted);
+
+    font-size: 0.95rem;
+}
+
+
+.tool-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+
+.tool-free {
+    color: #7ee787;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+
+.tool-link {
+    color: var(--accent);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+
+.no-results {
+    padding: 40px 0;
+
+    color: var(--muted);
+
+    text-align: center;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .filters {
+        gap: 7px;
+    }
+
+}
+
 }
