@@ -1,104 +1,264 @@
+/* ========================================
+   TOOLsDEVUP
+   Tool Directory
+======================================== */
+
+
+/* ========================================
+   TOOL DATABASE
+======================================== */
+
 const tools = [
+
     {
         name: "ElevenLabs",
+
         category: "AI",
+
+        icon: "🎙️",
+
         description:
-            "AI voice generation and audio tools for creators, students and developers.",
+            "Create realistic AI voices, speech and audio for content, projects and applications.",
+
         free: true,
-        url: "https://elevenlabs.io/"
+
+        tags: [
+            "Voice AI",
+            "Audio",
+            "Creator"
+        ],
+
+        url: "tools/ai/elevenlabs.html"
     },
+
 
     {
         name: "Gamma",
+
         category: "AI",
+
+        icon: "✨",
+
         description:
-            "Create presentations, documents and visual content with AI.",
+            "Create polished presentations, documents and visual content with AI.",
+
         free: true,
+
+        tags: [
+            "Presentations",
+            "AI",
+            "Productivity"
+        ],
+
         url: "https://gamma.app/"
     },
 
+
     {
         name: "Descript",
+
         category: "AI",
+
+        icon: "🎬",
+
         description:
-            "AI-powered tools for editing video, audio and podcasts.",
+            "Edit video and audio using powerful AI-assisted workflows.",
+
         free: true,
+
+        tags: [
+            "Video",
+            "Audio",
+            "AI"
+        ],
+
         url: "https://www.descript.com/"
     },
 
+
     {
         name: "Vercel",
+
         category: "Developer",
+
+        icon: "▲",
+
         description:
-            "Deploy and scale modern web applications and websites.",
+            "Deploy modern web applications with a developer-focused cloud platform.",
+
         free: true,
+
+        tags: [
+            "Deploy",
+            "Web",
+            "Cloud"
+        ],
+
         url: "https://vercel.com/"
     },
 
+
     {
         name: "DigitalOcean",
+
         category: "Developer",
+
+        icon: "🌊",
+
         description:
-            "Cloud infrastructure and developer services for building applications.",
+            "Simple cloud infrastructure for developers building and deploying applications.",
+
         free: true,
+
+        tags: [
+            "Cloud",
+            "VPS",
+            "Developer"
+        ],
+
         url: "https://www.digitalocean.com/"
     },
 
+
     {
         name: "Cloudflare",
+
         category: "Developer",
+
+        icon: "☁️",
+
         description:
-            "Web performance, security, DNS and developer infrastructure.",
+            "Build and protect modern applications with web infrastructure and security.",
+
         free: true,
+
+        tags: [
+            "Cloud",
+            "Security",
+            "DNS"
+        ],
+
         url: "https://www.cloudflare.com/"
     },
 
+
     {
         name: "GitHub",
+
         category: "Developer",
+
+        icon: "⌘",
+
         description:
-            "Platform for hosting code, collaborating and managing software projects.",
+            "Collaborate, host code and manage software development projects.",
+
         free: true,
+
+        tags: [
+            "Git",
+            "Code",
+            "Collaboration"
+        ],
+
         url: "https://github.com/"
     },
 
+
     {
         name: "Canva",
+
         category: "Student",
+
+        icon: "🎨",
+
         description:
             "Create presentations, graphics, documents and visual content.",
+
         free: true,
+
+        tags: [
+            "Design",
+            "Presentations",
+            "Study"
+        ],
+
         url: "https://www.canva.com/"
     },
 
+
     {
         name: "Grammarly",
+
         category: "Student",
+
+        icon: "✍️",
+
         description:
-            "Writing assistant for improving clarity, grammar and communication.",
+            "Improve your writing, clarity and communication with AI assistance.",
+
         free: true,
+
+        tags: [
+            "Writing",
+            "AI",
+            "Study"
+        ],
+
         url: "https://www.grammarly.com/"
     },
 
+
     {
         name: "Notion",
+
         category: "Student",
+
+        icon: "▣",
+
         description:
-            "Workspace for notes, projects, databases and personal organization.",
+            "Organize notes, projects, databases and your entire student workflow.",
+
         free: true,
+
+        tags: [
+            "Notes",
+            "Planning",
+            "Productivity"
+        ],
+
         url: "https://www.notion.so/"
     }
+
 ];
 
 
-const toolsGrid = document.getElementById("tools-grid");
-const searchInput = document.getElementById("tool-search");
-const filterButtons = document.querySelectorAll(".filter-button");
-const noResults = document.getElementById("no-results");
+/* ========================================
+   DOM
+======================================== */
 
+const toolsGrid =
+    document.getElementById("tools-grid");
+
+const searchInput =
+    document.getElementById("tool-search");
+
+const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+const noResults =
+    document.getElementById("no-results");
+
+
+/* ========================================
+   STATE
+======================================== */
 
 let currentCategory = "all";
 
+
+/* ========================================
+   RENDER
+======================================== */
 
 function renderTools() {
 
@@ -108,26 +268,39 @@ function renderTools() {
             .toLowerCase();
 
 
-    const filteredTools = tools.filter((tool) => {
+    const filteredTools =
+        tools.filter((tool) => {
 
-        const matchesCategory =
-            currentCategory === "all" ||
-            tool.category === currentCategory;
-
-
-        const matchesSearch =
-            tool.name
-                .toLowerCase()
-                .includes(searchTerm) ||
-
-            tool.description
-                .toLowerCase()
-                .includes(searchTerm);
+            const matchesCategory =
+                currentCategory === "all" ||
+                tool.category === currentCategory;
 
 
-        return matchesCategory && matchesSearch;
+            const searchableText = [
 
-    });
+                tool.name,
+
+                tool.category,
+
+                tool.description,
+
+                ...tool.tags
+
+            ]
+                .join(" ")
+                .toLowerCase();
+
+
+            const matchesSearch =
+                searchableText.includes(searchTerm);
+
+
+            return (
+                matchesCategory &&
+                matchesSearch
+            );
+
+        });
 
 
     toolsGrid.innerHTML = "";
@@ -135,14 +308,18 @@ function renderTools() {
 
     if (filteredTools.length === 0) {
 
-        noResults.classList.remove("hidden");
+        noResults.classList.remove(
+            "hidden"
+        );
 
         return;
 
     }
 
 
-    noResults.classList.add("hidden");
+    noResults.classList.add(
+        "hidden"
+    );
 
 
     filteredTools.forEach((tool) => {
@@ -151,38 +328,86 @@ function renderTools() {
             document.createElement("article");
 
 
-        card.className = "tool-card";
+        card.className =
+            "tool-card";
 
 
         card.innerHTML = `
 
-            <span class="tool-category">
-                ${tool.category}
-            </span>
+            <div class="tool-card-top">
+
+                <div class="tool-icon">
+
+                    ${tool.icon}
+
+                </div>
+
+
+                <span class="tool-category">
+
+                    ${tool.category}
+
+                </span>
+
+            </div>
+
 
             <h3>
+
                 ${tool.name}
+
             </h3>
 
-            <p>
+
+            <p class="tool-description">
+
                 ${tool.description}
+
             </p>
+
+
+            <div class="tool-tags">
+
+                ${tool.tags
+                    .map(
+                        tag =>
+                            `<span>${tag}</span>`
+                    )
+                    .join("")}
+
+            </div>
+
 
             <div class="tool-card-footer">
 
-                ${
-                    tool.free
-                        ? '<span class="tool-free">FREE PLAN</span>'
-                        : '<span></span>'
-                }
+                <div>
+
+                    ${
+                        tool.free
+
+                            ? `
+                                <span class="tool-free">
+                                    ✓ Free plan
+                                </span>
+                              `
+
+                            : `
+                                <span class="tool-paid">
+                                    Paid
+                                </span>
+                              `
+                    }
+
+                </div>
+
 
                 <a
                     class="tool-link"
                     href="${tool.url}"
-                    target="_blank"
-                    rel="noopener noreferrer"
                 >
-                    Visit Tool →
+
+                    View tool →
+
                 </a>
 
             </div>
@@ -197,33 +422,56 @@ function renderTools() {
 }
 
 
+/* ========================================
+   FILTERS
+======================================== */
+
 filterButtons.forEach((button) => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        filterButtons.forEach((btn) => {
-            btn.classList.remove("active");
-        });
+            filterButtons.forEach(
+                (btn) => {
+
+                    btn.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
 
 
-        button.classList.add("active");
+            button.classList.add(
+                "active"
+            );
 
 
-        currentCategory =
-            button.dataset.category;
+            currentCategory =
+                button.dataset.category;
 
 
-        renderTools();
+            renderTools();
 
-    });
+        }
+    );
 
 });
 
+
+/* ========================================
+   SEARCH
+======================================== */
 
 searchInput.addEventListener(
     "input",
     renderTools
 );
 
+
+/* ========================================
+   INITIAL RENDER
+======================================== */
 
 renderTools();
